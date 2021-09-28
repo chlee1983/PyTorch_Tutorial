@@ -55,7 +55,7 @@ def get_model():
                           nn.ReLU(),
                           nn.Linear(1000, 10)).to(device)
     loss_fn = nn.CrossEntropyLoss()
-    optimizer = Adam(model.parameters(), lr=1e-1)
+    optimizer = Adam(model.parameters(), lr=1e-5)
     return model, loss_fn, optimizer
 
 
@@ -105,7 +105,7 @@ model, loss_fn, optimizer = get_model()
 train_losses, train_accuracies = [], []
 val_losses, val_accuracies = [], []
 
-for epoch in range(5):
+for epoch in range(100):
     print(epoch)
     train_epoch_losses, train_epoch_accuracies = [], []
 
@@ -132,7 +132,7 @@ for epoch in range(5):
     val_losses.append(validation_loss)
     val_accuracies.append(val_epoch_accuracy)
 
-epochs = np.arange(5) + 1
+epochs = np.arange(100) + 1
 plt.subplot(211)
 plt.plot(epochs, train_losses, 'bo', label='Training loss')
 plt.plot(epochs, val_losses, 'r', label='Validation loss')
@@ -157,19 +157,19 @@ plt.show()
 
 for ix, par in enumerate(model.parameters()):
     if ix == 0:
-        plt.hist(par.cpu().deteach().numpy().flatten())
+        plt.hist(par.cpu().detach().numpy().flatten())
         plt.title('Distribution of weights connecting input to hidden layer')
         plt.show()
     elif ix == 1:
-        plt.hist(par.cpu().deteach().numpy().flatten())
+        plt.hist(par.cpu().detach().numpy().flatten())
         plt.title('Distribution of biases of hidden layer')
         plt.show()
     elif ix == 2:
-        plt.hist(par.cpu().deteach().numpy().flatten())
+        plt.hist(par.cpu().detach().numpy().flatten())
         plt.title('Distribution of weights connecting hidden to output layer')
         plt.show()
     elif ix == 3:
-        plt.hist(par.cpu().deteach().numpy().flatten())
+        plt.hist(par.cpu().detach().numpy().flatten())
         plt.title('Distribution of biases of output layer')
         plt.show()
 
