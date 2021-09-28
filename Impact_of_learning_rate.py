@@ -55,7 +55,7 @@ def get_model():
                           nn.ReLU(),
                           nn.Linear(1000, 10)).to(device)
     loss_fn = nn.CrossEntropyLoss()
-    optimizer = Adam(model.parameters(), lr=1e-1)
+    optimizer = Adam(model.parameters(), lr=1e-5)
     return model, loss_fn, optimizer
 
 
