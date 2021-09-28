@@ -132,6 +132,24 @@ for epoch in range(5):
     val_losses.append(validation_loss)
     val_accuracies.append(val_epoch_accuracy)
 
+for ix, par in enumerate(model.parameters()):
+    if ix == 0:
+        plt.hist(par.cpu().deteach().numpy().flatten())
+        plt.title('Distribution of weights connecting input to hidden layer')
+        plt.show()
+    elif ix == 1:
+        plt.hist(par.cpu().deteach().numpy().flatten())
+        plt.title('Distribution of biases of hidden layer')
+        plt.show()
+    elif ix == 2:
+        plt.hist(par.cpu().deteach().numpy().flatten())
+        plt.title('Distribution of weights connecting hidden to output layer')
+        plt.show()
+    elif ix == 3:
+        plt.hist(par.cpu().deteach().numpy().flatten())
+        plt.title('Distribution of biases of output layer')
+        plt.show()
+
 epochs = np.arange(5) + 1
 plt.subplot(211)
 plt.plot(epochs, train_losses, 'bo', label='Training loss')
