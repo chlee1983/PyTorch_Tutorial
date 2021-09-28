@@ -44,7 +44,7 @@ class FMNISTDataset(Dataset):
 
 def get_data():
     train = FMNISTDataset(tr_images, tr_targets)
-    trn_dl = DataLoader(train, batch_size=32, shuffle=True)
+    trn_dl = DataLoader(train, batch_size=10000, shuffle=True)
     val = FMNISTDataset(val_images, val_targets)
     val_dl = DataLoader(val, batch_size=len(val_images), shuffle=False)
     return trn_dl, val_dl
@@ -132,23 +132,6 @@ for epoch in range(5):
     val_losses.append(validation_loss)
     val_accuracies.append(val_epoch_accuracy)
 
-for ix, par in enumerate(model.parameters()):
-    if ix == 0:
-        plt.hist(par.cpu().deteach().numpy().flatten())
-        plt.title('Distribution of weights connecting input to hidden layer')
-        plt.show()
-    elif ix == 1:
-        plt.hist(par.cpu().deteach().numpy().flatten())
-        plt.title('Distribution of biases of hidden layer')
-        plt.show()
-    elif ix == 2:
-        plt.hist(par.cpu().deteach().numpy().flatten())
-        plt.title('Distribution of weights connecting hidden to output layer')
-        plt.show()
-    elif ix == 3:
-        plt.hist(par.cpu().deteach().numpy().flatten())
-        plt.title('Distribution of biases of output layer')
-        plt.show()
 
 epochs = np.arange(5) + 1
 plt.subplot(211)
@@ -175,19 +158,19 @@ plt.show()
 
 for ix, par in enumerate(model.parameters()):
     if ix == 0:
-        plt.hist(par.cpu().deteach().numpy().flatten())
+        plt.hist(par.cpu().detach().numpy().flatten())
         plt.title('Distribution of weights connecting input to hidden layer')
         plt.show()
     elif ix == 1:
-        plt.hist(par.cpu().deteach().numpy().flatten())
+        plt.hist(par.cpu().detach().numpy().flatten())
         plt.title('Distribution of biases of hidden layer')
         plt.show()
     elif ix == 2:
-        plt.hist(par.cpu().deteach().numpy().flatten())
+        plt.hist(par.cpu().detach().numpy().flatten())
         plt.title('Distribution of weights connecting hidden to output layer')
         plt.show()
     elif ix == 3:
-        plt.hist(par.cpu().deteach().numpy().flatten())
+        plt.hist(par.cpu().detach().numpy().flatten())
         plt.title('Distribution of biases of output layer')
         plt.show()
 
