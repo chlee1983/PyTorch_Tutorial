@@ -55,7 +55,7 @@ def get_model():
                           nn.ReLU(),
                           nn.Linear(1000, 10)).to(device)
     loss_fn = nn.CrossEntropyLoss()
-    optimizer = Adam(model.parameters(), lr=1e-1)
+    optimizer = Adam(model.parameters(), lr=1e-5)
     return model, loss_fn, optimizer
 
 
@@ -157,18 +157,18 @@ plt.show()
 
 for ix, par in enumerate(model.parameters()):
     if ix == 0:
-        plt.hist(par.cpu().deteach().numpy().flatten())
+        plt.hist(par.cpu().detach().numpy().flatten())
         plt.title('Distribution of weights connecting input to hidden layer')
         plt.show()
     elif ix == 1:
-        plt.hist(par.cpu().deteach().numpy().flatten())
+        plt.hist(par.cpu().detach().numpy().flatten())
         plt.title('Distribution of biases of hidden layer')
         plt.show()
     elif ix == 2:
-        plt.hist(par.cpu().deteach().numpy().flatten())
+        plt.hist(par.cpu().detach().numpy().flatten())
         plt.title('Distribution of weights connecting hidden to output layer')
         plt.show()
     elif ix == 3:
-        plt.hist(par.cpu().deteach().numpy().flatten())
+        plt.hist(par.cpu().detach().numpy().flatten())
         plt.title('Distribution of biases of output layer')
         plt.show()
