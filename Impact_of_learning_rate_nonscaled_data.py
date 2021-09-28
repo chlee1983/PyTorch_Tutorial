@@ -55,7 +55,7 @@ def get_model():
                           nn.ReLU(),
                           nn.Linear(1000, 10)).to(device)
     loss_fn = nn.CrossEntropyLoss()
-    optimizer = Adam(model.parameters(), lr=1e-5)
+    optimizer = Adam(model.parameters(), lr=1e-3)
     return model, loss_fn, optimizer
 
 
@@ -105,7 +105,7 @@ model, loss_fn, optimizer = get_model()
 train_losses, train_accuracies = [], []
 val_losses, val_accuracies = [], []
 
-for epoch in range(100):
+for epoch in range(10):
     print(epoch)
     train_epoch_losses, train_epoch_accuracies = [], []
 
@@ -133,7 +133,7 @@ for epoch in range(100):
     val_accuracies.append(val_epoch_accuracy)
 
 
-epochs = np.arange(100) + 1
+epochs = np.arange(10) + 1
 plt.subplot(211)
 plt.plot(epochs, train_losses, 'bo', label='Training loss')
 plt.plot(epochs, val_losses, 'r', label='Validation loss')
