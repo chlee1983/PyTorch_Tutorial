@@ -44,7 +44,7 @@ class FMNISTDataset(Dataset):
 
 def get_data():
     train = FMNISTDataset(tr_images, tr_targets)
-    trn_dl = DataLoader(train, batch_size=10000, shuffle=True)
+    trn_dl = DataLoader(train, batch_size=32, shuffle=True)
     val = FMNISTDataset(val_images, val_targets)
     val_dl = DataLoader(val, batch_size=len(val_images), shuffle=False)
     return trn_dl, val_dl
@@ -55,7 +55,7 @@ def get_model():
                           nn.ReLU(),
                           nn.Linear(1000, 10)).to(device)
     loss_fn = nn.CrossEntropyLoss()
-    optimizer = Adam(model.parameters(), lr=1e-1)
+    optimizer = Adam(model.parameters(), lr=1e-5)
     return model, loss_fn, optimizer
 
 
