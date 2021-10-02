@@ -23,7 +23,7 @@ class FMNISTDataset(Dataset):
         x = x.view(-1, 28 * 28)
         self.x, self.y = x, y
 
-    """contains logic for what should be returned when ask for the ix-th data points 
+    """contains logic for what should be returned when ask for the ix-th data points
     (ix will be an integer between 0 and __len__)"""
 
     def __getitem__(self, ix):
