@@ -46,14 +46,12 @@ def get_model():
         def __init__(self):
             super().__init__()
             self.input_to_hidden_layer = nn.Linear(784, 1000)
-            self.batch_norm = nn.BatchNorm1d(1000)
             self.hidden_layer_activation = nn.ReLU()
             self.hidden_to_output_layer = nn.Linear(1000, 10)
 
         def forward(self, x):
             x = self.input_to_hidden_layer(x)
-            x0 = self.batch_norm(x)
-            x1 = self.hidden_layer_activation(x0)
+            x1 = self.hidden_layer_activation(x)
             x2 = self.hidden_to_output_layer(x1)
             return x2, x1
 
