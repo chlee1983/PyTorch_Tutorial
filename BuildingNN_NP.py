@@ -13,10 +13,11 @@ def feed_forward(inputs, outputs, weights):
 
 def update_weights(inputs, outputs, weights, lr):
     original_weights = deepcopy(weights)
-    temp_weights = deepcopy(weights)
     updated_weights = deepcopy(weights)
     original_loss = feed_forward(inputs, outputs, original_weights)
     for i, layer in enumerate(original_weights):
+        print(i)
+        print(layer)
         for index, weight in np.ndenumerate(layer):
             temp_weights = deepcopy(weights)
             """the process of updating a parameter by a very small amount 

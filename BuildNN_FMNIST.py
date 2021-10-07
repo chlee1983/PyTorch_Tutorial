@@ -12,6 +12,7 @@ from torchvision import datasets
 data_folder = '~/data/FMNIST'
 fmnist = datasets.FashionMNIST(data_folder, download=True, train=True)
 
+# images and targets both have 60000 images
 tr_images = fmnist.data
 tr_targets = fmnist.targets
 
@@ -75,6 +76,7 @@ def accuracy(x, y, model):
     is_correct = argmaxes == y
     return is_correct.cpu().numpy().tolist()
 
+
 # initialize the model, loss_fn, optimizer and Dataloaders
 trn_dl = get_data()
 model, loss_fn, optimizer = get_model()
@@ -97,7 +99,7 @@ for epoch in range(5):
     losses.append(epoch_loss)
     accuracies.append(epoch_accuracy)
 
-epochs = np.arange(5)+1
+epochs = np.arange(5) + 1
 plt.figure(figsize=(20, 5))
 plt.subplot(121)
 plt.title('Loss value over increasing epochs')
@@ -106,8 +108,6 @@ plt.legend()
 plt.subplot(122)
 plt.title('Accuracy value over increasing epochs')
 plt.plot(epochs, accuracies, label='Training Accuracies')
-plt.gca().set_yticklabels(['{:.0f}%'.format(x*100) for x in plt.gca().get_yticks()])
+plt.gca().set_yticklabels(['{:.0f}%'.format(x * 100) for x in plt.gca().get_yticks()])
 plt.legend()
 plt.show()
-
-
